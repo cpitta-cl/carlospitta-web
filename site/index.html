@@ -76,19 +76,23 @@
   <div class="voices-text">
     <h2>¿Quién gana en ti?</h2>
     <p>La economía clásica supone que siempre escuchas al angelito: que decides con calma, con toda la información y pensando en tu yo del futuro. La economía del comportamiento estudia por qué tantas veces gana el diablito.</p>
-    <p>Su arma favorita es la impaciencia. Mídela en tres preguntas.</p>
+    <p>Diez tentaciones, una por pilar. Responde con honestidad: nadie más ve tus respuestas.</p>
   </div>
   <div class="game" id="game">
-    <p class="q" id="q">¿Qué prefieres?</p>
+    <p class="q" id="q">Son las 23:30. ¿Qué haces?</p>
     <div class="choices">
-      <button type="button" class="choice" data-pick="now"><span>Hoy</span><strong>$100.000</strong></button>
-      <button type="button" class="choice" data-pick="later"><span>En un mes</span><strong id="later-amt">$110.000</strong></button>
+      <button type="button" class="choice" id="opt0" data-side="devil"><span>Un capítulo más</span><strong>6 h de sueño</strong></button>
+      <button type="button" class="choice" id="opt1" data-side="angel"><span>Apagar y dormir</span><strong>7 h de sueño</strong></button>
     </div>
-    <p class="step" id="step">Pregunta 1 de 3</p>
+    <p class="step" id="step">Pregunta 1 de 10 · Pilar 01</p>
     <div class="result" id="result" hidden>
       <p class="verdict" id="verdict"></p>
+      <p id="score"></p>
       <p id="explain"></p>
-      <p><a href="#p2">Lee el pilar 02, dinero y finanzas</a> · <button type="button" class="link" id="again">Jugar de nuevo</button></p>
+      <p id="lost-h" class="lost-h">El diablito ganó en:</p>
+      <ul id="lost" class="lost"></ul>
+      <p id="money" class="money" hidden>En la de dinero: preferir $100.000 hoy a $125.000 en un mes equivale a una impaciencia de 25% al mes, más de 1.300% al año.</p>
+      <p><button type="button" class="link" id="again">Jugar de nuevo</button></p>
     </div>
   </div>
 </section>
@@ -137,30 +141,45 @@
 </section>
 <script>
 (function(){
-  var C={"pairs": [["Un capítulo más y te vas a dormir.", "Mañana te vas a agradecer haber dormido.", 1], ["Cómpralo ahora. A crédito, total…", "Espera un mes. Si todavía lo quieres, cómpralo.", 2], ["Mañana empiezas. Hoy no hay ganas.", "Cinco minutos hoy valen más que una hora el lunes.", 3], ["Mira lo que tiene tu vecino.", "Mira todo lo que ya tienes tú.", 4], ["No le escribas tú primero.", "Escríbele. Nadie pierde por querer.", 5], ["Revisa las noticias otra vez.", "Lo que no depende de ti puede esperar.", 6], ["Respóndele ahora, con todo.", "Respira tres veces antes de contestar.", 7], ["Quédate donde estás: cambiar da miedo.", "Pregúntate si lo que haces le sirve a alguien.", 8], ["Revisa el celular, solo un segundo.", "Primero respira. El celular puede esperar.", 9], ["No tienes tiempo para quedarte en silencio.", "Cinco minutos de silencio también son tiempo.", 10]], "tcount": "Tentación {i} de {n}", "tpillar": "Pilar {p}", "amounts": [100000, 110000, 125000, 150000], "locale": "es-CL", "step": "Pregunta {n} de 3", "out": [["Gana el angelito.", "Esperaste por un 10% más. Tu impaciencia equivale a menos de 10% al mes. Ojo: 10% mensual ya es más de 200% al año."], ["Empate técnico.", "Esperaste por un 25% más, pero no por un 10%. Tu impaciencia está entre 10% y 25% al mes: entre unos 200% y 1.300% al año."], ["Gana el diablito, por poco.", "Solo esperaste por un 50% más. Tu impaciencia está entre 25% y 50% al mes: más de 1.300% al año."], ["Gana el diablito.", "Ni un 50% más te hizo esperar. Tu impaciencia supera el 50% al mes. Quien te preste para comprar hoy sabe exactamente cuánto vale tu prisa."]]}, k=0;
-  var d=document.getElementById('say-devil'), a=document.getElementById('say-angel');
-  document.getElementById('next-temptation').addEventListener('click',function(){
-    k=(k+1)%C.pairs.length; d.textContent=C.pairs[k][0]; a.textContent=C.pairs[k][1];
-    var p=C.pairs[k][2];
-    document.getElementById('t-count').textContent=C.tcount.replace('{i}',k+1).replace('{n}',C.pairs.length);
-    var pl=document.getElementById('t-pillar'); pl.href='#p'+p; pl.textContent=C.tpillar.replace('{p}',(p<10?'0':'')+p);
+  var C={"pairs": [["Un capítulo más y te vas a dormir.", "Mañana te vas a agradecer haber dormido.", 1], ["Cómpralo ahora. A crédito, total…", "Espera un mes. Si todavía lo quieres, cómpralo.", 2], ["Mañana empiezas. Hoy no hay ganas.", "Cinco minutos hoy valen más que una hora el lunes.", 3], ["Mira lo que tiene tu vecino.", "Mira todo lo que ya tienes tú.", 4], ["No le escribas tú primero.", "Escríbele. Nadie pierde por querer.", 5], ["Revisa las noticias otra vez.", "Lo que no depende de ti puede esperar.", 6], ["Respóndele ahora, con todo.", "Respira tres veces antes de contestar.", 7], ["Quédate donde estás: cambiar da miedo.", "Pregúntate si lo que haces le sirve a alguien.", 8], ["Revisa el celular, solo un segundo.", "Primero respira. El celular puede esperar.", 9], ["No tienes tiempo para quedarte en silencio.", "Cinco minutos de silencio también son tiempo.", 10]], "tcount": "Tentación {i} de {n}", "tpillar": "Pilar {p}", "quiz": [["Son las 23:30. ¿Qué haces?", ["Un capítulo más", "6 h de sueño"], ["Apagar y dormir", "7 h de sueño"]], ["¿Qué prefieres?", ["Hoy", "$100.000"], ["En un mes", "$125.000"]], ["Tienes una tarea para el lunes.", ["Descansar hoy", "3 h de tarea el domingo"], ["Empezar hoy", "1 h hoy y el domingo libre"]], ["Tienes 30 minutos libres.", ["Redes sociales", "30 min de scroll"], ["Algo difícil que quieres dominar", "30 min de práctica"]], ["Extrañas a alguien.", ["Esperar a que te escriba", "0 mensajes"], ["Escribirle tú primero", "1 mensaje"]], ["Te preocupa algo que no puedes cambiar.", ["Seguir leyendo noticias", "20 min más"], ["Hacer algo que sí depende de ti", "20 min de acción"]], ["Te llega un mensaje que te molesta.", ["Responder de inmediato", "en 1 minuto"], ["Responder mañana", "en 24 horas"]], ["Te ofrecen dos trabajos.", ["Te aburre, pero paga más", "+20% de sueldo"], ["Le sirve a alguien", "el mismo sueldo"]], ["Tienes que tomar una decisión importante.", ["Decidir ya", "0 respiraciones"], ["Respirar antes", "3 minutos"]], ["Antes de dormir te quedan 5 minutos.", ["Pantalla", "5 min de celular"], ["Silencio", "5 min mirando el cielo"]]], "step": "Pregunta {n} de 10", "out": [["Gana el angelito.", "Tu yo del futuro está en buenas manos."], ["Gana el angelito, por poco.", "Vas bien, pero el diablito sabe dónde encontrarte."], ["Empate técnico.", "Mitad y mitad: así somos casi todos. La buena noticia es que cada pilar se entrena."], ["Gana el diablito.", "No te preocupes: saberlo es el primer paso. Empieza por un solo pilar."]], "score": "El angelito ganó {a} de 10.", "names": ["Salud y belleza", "Dinero y finanzas", "Procrastinación", "Flujo", "Amor", "Control", "Confianza, perdón y gratitud", "Propósito (ikigai)", "Consciencia", "Espiritualidad"], "money": "En la de dinero: preferir $100.000 hoy a $125.000 en un mes equivale a una impaciencia de 25% al mes, más de 1.300% al año."}, N=C.quiz.length, k=0, ans=new Array(N).fill(null), done=false;
+  function $(i){return document.getElementById(i);}
+  function pad(p){return (p<10?'0':'')+p;}
+  function render(){
+    var P=C.pairs[k], Q=C.quiz[k];
+    $('say-devil').textContent=P[0]; $('say-angel').textContent=P[1];
+    $('t-count').textContent=C.tcount.replace('{i}',k+1).replace('{n}',N);
+    var pl=$('t-pillar'); pl.href='#p'+P[2]; pl.textContent=C.tpillar.replace('{p}',pad(P[2]));
+    if(done) return;
+    $('q').textContent=Q[0];
+    var sides = (k%2===0) ? [['devil',Q[1]],['angel',Q[2]]] : [['angel',Q[2]],['devil',Q[1]]];
+    for(var j=0;j<2;j++){ var b=$('opt'+j); b.dataset.side=sides[j][0];
+      b.querySelector('span').textContent=sides[j][1][0]; b.querySelector('strong').textContent=sides[j][1][1]; }
+    $('step').textContent=C.step.replace('{n}',k+1)+' · '+C.tpillar.replace('{p}',pad(k+1));
+  }
+  function finish(){
+    done=true; var a=ans.filter(function(x){return x==='angel';}).length;
+    var o = a>=9?C.out[0] : a>=6?C.out[1] : a>=4?C.out[2] : C.out[3];
+    document.querySelector('#game .choices').hidden=true; $('q').hidden=true; $('step').hidden=true;
+    $('result').hidden=false; $('verdict').textContent=o[0]; $('explain').textContent=o[1];
+    $('score').textContent=C.score.replace('{a}',a);
+    var ul=$('lost'); ul.innerHTML='';
+    ans.forEach(function(x,i){ if(x==='devil'){ var li=document.createElement('li'), l=document.createElement('a');
+      l.href='#p'+(i+1); l.textContent=pad(i+1)+' '+C.names[i]; li.appendChild(l); ul.appendChild(li);} });
+    $('lost-h').hidden = !ul.children.length;
+    $('money').hidden = ans[1]!=='devil';
+  }
+  $('next-temptation').addEventListener('click',function(){ k=(k+1)%N; render(); });
+  document.querySelector('#game .choices').addEventListener('click',function(e){
+    var b=e.target.closest('.choice'); if(!b||done) return;
+    ans[k]=b.dataset.side;
+    var nx=-1; for(var i=1;i<=N;i++){ var j=(k+i)%N; if(ans[j]===null){nx=j;break;} }
+    if(nx<0){ finish(); render(); return; }
+    k=nx; render();
   });
-  var later=C.amounts.slice(1), r=0;
-  var amt=document.getElementById('later-amt'), step=document.getElementById('step'),
-      res=document.getElementById('result'), v=document.getElementById('verdict'),
-      ex=document.getElementById('explain'), ch=document.querySelector('#game .choices'), q=document.getElementById('q');
-  function fmt(n){return '$'+n.toLocaleString(C.locale);}
-  function st(n){return C.step.replace('{n}',n);}
-  function show(o){ch.hidden=true;step.hidden=true;q.hidden=true;res.hidden=false;v.textContent=o[0];ex.textContent=o[1];}
-  ch.addEventListener('click',function(e){
-    var b=e.target.closest('.choice'); if(!b) return;
-    if(b.dataset.pick==='later'){ show(C.out[r]); return; }
-    r++; if(r>=later.length){ show(C.out[3]); return; }
-    amt.textContent=fmt(later[r]); step.textContent=st(r+1);
-  });
-  document.getElementById('again').addEventListener('click',function(){
-    r=0; amt.textContent=fmt(later[0]); step.textContent=st(1);
-    ch.hidden=false; step.hidden=false; q.hidden=false; res.hidden=true;
+  $('again').addEventListener('click',function(){
+    ans=new Array(N).fill(null); done=false; k=0;
+    document.querySelector('#game .choices').hidden=false; $('q').hidden=false; $('step').hidden=false; $('result').hidden=true;
+    render();
   });
 })();
 </script>

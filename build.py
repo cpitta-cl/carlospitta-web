@@ -44,14 +44,25 @@ T = {
  "why_body": "La infelicidad es también un problema económico. Por eso un economista se pregunta qué decisiones, pequeñas y repetidas, nos hacen vivir mejor. Este sitio no reemplaza la ayuda profesional: si lo estás pasando mal, busca apoyo.",
  "voices_h": "¿Quién gana en ti?",
  "voices_p1": "La economía clásica supone que siempre escuchas al angelito: que decides con calma, con toda la información y pensando en tu yo del futuro. La economía del comportamiento estudia por qué tantas veces gana el diablito.",
- "voices_p2": "Su arma favorita es la impaciencia. Mídela en tres preguntas.",
- "q": "¿Qué prefieres?", "now": "Hoy", "later": "En un mes",
- "amounts": [100000, 110000, 125000, 150000], "locale": "es-CL",
- "step": "Pregunta {n} de 3", "read_p2": "Lee el pilar 02, dinero y finanzas", "again": "Jugar de nuevo",
- "out": [["Gana el angelito.", "Esperaste por un 10% más. Tu impaciencia equivale a menos de 10% al mes. Ojo: 10% mensual ya es más de 200% al año."],
-         ["Empate técnico.", "Esperaste por un 25% más, pero no por un 10%. Tu impaciencia está entre 10% y 25% al mes: entre unos 200% y 1.300% al año."],
-         ["Gana el diablito, por poco.", "Solo esperaste por un 50% más. Tu impaciencia está entre 25% y 50% al mes: más de 1.300% al año."],
-         ["Gana el diablito.", "Ni un 50% más te hizo esperar. Tu impaciencia supera el 50% al mes. Quien te preste para comprar hoy sabe exactamente cuánto vale tu prisa."]],
+ "voices_p2": "Diez tentaciones, una por pilar. Responde con honestidad: nadie más ve tus respuestas.",
+ "quiz": [
+  ["Son las 23:30. ¿Qué haces?", ["Un capítulo más", "6 h de sueño"], ["Apagar y dormir", "7 h de sueño"]],
+  ["¿Qué prefieres?", ["Hoy", "$100.000"], ["En un mes", "$125.000"]],
+  ["Tienes una tarea para el lunes.", ["Descansar hoy", "3 h de tarea el domingo"], ["Empezar hoy", "1 h hoy y el domingo libre"]],
+  ["Tienes 30 minutos libres.", ["Redes sociales", "30 min de scroll"], ["Algo difícil que quieres dominar", "30 min de práctica"]],
+  ["Extrañas a alguien.", ["Esperar a que te escriba", "0 mensajes"], ["Escribirle tú primero", "1 mensaje"]],
+  ["Te preocupa algo que no puedes cambiar.", ["Seguir leyendo noticias", "20 min más"], ["Hacer algo que sí depende de ti", "20 min de acción"]],
+  ["Te llega un mensaje que te molesta.", ["Responder de inmediato", "en 1 minuto"], ["Responder mañana", "en 24 horas"]],
+  ["Te ofrecen dos trabajos.", ["Te aburre, pero paga más", "+20% de sueldo"], ["Le sirve a alguien", "el mismo sueldo"]],
+  ["Tienes que tomar una decisión importante.", ["Decidir ya", "0 respiraciones"], ["Respirar antes", "3 minutos"]],
+  ["Antes de dormir te quedan 5 minutos.", ["Pantalla", "5 min de celular"], ["Silencio", "5 min mirando el cielo"]]],
+ "step": "Pregunta {n} de 10", "again": "Jugar de nuevo",
+ "out": [["Gana el angelito.", "Tu yo del futuro está en buenas manos."],
+         ["Gana el angelito, por poco.", "Vas bien, pero el diablito sabe dónde encontrarte."],
+         ["Empate técnico.", "Mitad y mitad: así somos casi todos. La buena noticia es que cada pilar se entrena."],
+         ["Gana el diablito.", "No te preocupes: saberlo es el primer paso. Empieza por un solo pilar."]],
+ "result_score": "El angelito ganó {a} de 10.", "lost_h": "El diablito ganó en:",
+ "money_note": "En la de dinero: preferir $100.000 hoy a $125.000 en un mes equivale a una impaciencia de 25% al mes, más de 1.300% al año.",
  "pillars_h": "Diez pilares de la felicidad",
  "pillars_p": "Lo que la economía del comportamiento, la psicología y la experimentación han aprendido sobre una vida más feliz, destilado en diez ideas.",
  "try": "Pruébalo",
@@ -115,14 +126,25 @@ T = {
  "why_body": "Unhappiness is also an economic problem. So an economist asks which small, repeated decisions help us live better. This site is not a substitute for professional help: if you are struggling, reach out for support.",
  "voices_h": "Who wins in you?",
  "voices_p1": "Classical economics assumes you always listen to the angel: that you decide calmly, with full information, thinking of your future self. Behavioral economics studies why the devil wins so often.",
- "voices_p2": "Its favorite weapon is impatience. Measure yours in three questions.",
- "q": "Which would you rather have?", "now": "Today", "later": "In one month",
- "amounts": [100, 110, 125, 150], "locale": "en-US",
- "step": "Question {n} of 3", "read_p2": "Read pillar 02, money and finance", "again": "Play again",
- "out": [["The angel wins.", "You waited for 10% more. Your impatience is below 10% a month. Careful: 10% a month is already more than 200% a year."],
-         ["A close call.", "You waited for 25% more, but not for 10%. Your impatience is between 10% and 25% a month: roughly 200% to 1,300% a year."],
-         ["The devil wins, barely.", "You only waited for 50% more. Your impatience is between 25% and 50% a month: over 1,300% a year."],
-         ["The devil wins.", "Not even 50% more made you wait. Your impatience is above 50% a month. Whoever lends you money to buy today knows exactly what your hurry is worth."]],
+ "voices_p2": "Ten temptations, one per pillar. Answer honestly: nobody else sees your answers.",
+ "quiz": [
+  ["It's 11:30 pm. What do you do?", ["One more episode", "6 h of sleep"], ["Turn it off and sleep", "7 h of sleep"]],
+  ["Which would you rather have?", ["Today", "$100"], ["In one month", "$125"]],
+  ["You have an assignment due Monday.", ["Rest today", "3 h of work on Sunday"], ["Start today", "1 h today, Sunday free"]],
+  ["You have 30 free minutes.", ["Social media", "30 min of scrolling"], ["Something hard you want to master", "30 min of practice"]],
+  ["You miss someone.", ["Wait for them to write", "0 messages"], ["Write to them first", "1 message"]],
+  ["You are worried about something you can't change.", ["Keep reading the news", "20 more minutes"], ["Do something that is up to you", "20 min of action"]],
+  ["A message makes you angry.", ["Reply right away", "in 1 minute"], ["Reply tomorrow", "in 24 hours"]],
+  ["You get two job offers.", ["Boring, but pays more", "+20% salary"], ["Helps someone", "same salary"]],
+  ["You have an important decision to make.", ["Decide now", "0 breaths"], ["Breathe first", "3 minutes"]],
+  ["Five minutes left before bed.", ["Screen", "5 min of phone"], ["Silence", "5 min looking at the sky"]]],
+ "step": "Question {n} of 10", "again": "Play again",
+ "out": [["The angel wins.", "Your future self is in good hands."],
+         ["The angel wins, barely.", "You are doing well, but the devil knows where to find you."],
+         ["A close call.", "Half and half: that is most of us. The good news is that every pillar can be trained."],
+         ["The devil wins.", "Don't worry: knowing it is the first step. Start with a single pillar."]],
+ "result_score": "The angel won {a} out of 10.", "lost_h": "The devil won on:",
+ "money_note": "On money: preferring $100 today over $125 in a month means an impatience of 25% a month, over 1,300% a year.",
  "pillars_h": "Ten pillars of happiness",
  "pillars_p": "What behavioral economics, psychology and experiments have learned about a happier life, distilled into ten ideas.",
  "try": "Try this",
@@ -209,30 +231,45 @@ def shell(lang, key, title, body):
 
 SCRIPT = r"""
 (function(){
-  var C=__CFG__, k=0;
-  var d=document.getElementById('say-devil'), a=document.getElementById('say-angel');
-  document.getElementById('next-temptation').addEventListener('click',function(){
-    k=(k+1)%C.pairs.length; d.textContent=C.pairs[k][0]; a.textContent=C.pairs[k][1];
-    var p=C.pairs[k][2];
-    document.getElementById('t-count').textContent=C.tcount.replace('{i}',k+1).replace('{n}',C.pairs.length);
-    var pl=document.getElementById('t-pillar'); pl.href='#p'+p; pl.textContent=C.tpillar.replace('{p}',(p<10?'0':'')+p);
+  var C=__CFG__, N=C.quiz.length, k=0, ans=new Array(N).fill(null), done=false;
+  function $(i){return document.getElementById(i);}
+  function pad(p){return (p<10?'0':'')+p;}
+  function render(){
+    var P=C.pairs[k], Q=C.quiz[k];
+    $('say-devil').textContent=P[0]; $('say-angel').textContent=P[1];
+    $('t-count').textContent=C.tcount.replace('{i}',k+1).replace('{n}',N);
+    var pl=$('t-pillar'); pl.href='#p'+P[2]; pl.textContent=C.tpillar.replace('{p}',pad(P[2]));
+    if(done) return;
+    $('q').textContent=Q[0];
+    var sides = (k%2===0) ? [['devil',Q[1]],['angel',Q[2]]] : [['angel',Q[2]],['devil',Q[1]]];
+    for(var j=0;j<2;j++){ var b=$('opt'+j); b.dataset.side=sides[j][0];
+      b.querySelector('span').textContent=sides[j][1][0]; b.querySelector('strong').textContent=sides[j][1][1]; }
+    $('step').textContent=C.step.replace('{n}',k+1)+' · '+C.tpillar.replace('{p}',pad(k+1));
+  }
+  function finish(){
+    done=true; var a=ans.filter(function(x){return x==='angel';}).length;
+    var o = a>=9?C.out[0] : a>=6?C.out[1] : a>=4?C.out[2] : C.out[3];
+    document.querySelector('#game .choices').hidden=true; $('q').hidden=true; $('step').hidden=true;
+    $('result').hidden=false; $('verdict').textContent=o[0]; $('explain').textContent=o[1];
+    $('score').textContent=C.score.replace('{a}',a);
+    var ul=$('lost'); ul.innerHTML='';
+    ans.forEach(function(x,i){ if(x==='devil'){ var li=document.createElement('li'), l=document.createElement('a');
+      l.href='#p'+(i+1); l.textContent=pad(i+1)+' '+C.names[i]; li.appendChild(l); ul.appendChild(li);} });
+    $('lost-h').hidden = !ul.children.length;
+    $('money').hidden = ans[1]!=='devil';
+  }
+  $('next-temptation').addEventListener('click',function(){ k=(k+1)%N; render(); });
+  document.querySelector('#game .choices').addEventListener('click',function(e){
+    var b=e.target.closest('.choice'); if(!b||done) return;
+    ans[k]=b.dataset.side;
+    var nx=-1; for(var i=1;i<=N;i++){ var j=(k+i)%N; if(ans[j]===null){nx=j;break;} }
+    if(nx<0){ finish(); render(); return; }
+    k=nx; render();
   });
-  var later=C.amounts.slice(1), r=0;
-  var amt=document.getElementById('later-amt'), step=document.getElementById('step'),
-      res=document.getElementById('result'), v=document.getElementById('verdict'),
-      ex=document.getElementById('explain'), ch=document.querySelector('#game .choices'), q=document.getElementById('q');
-  function fmt(n){return '$'+n.toLocaleString(C.locale);}
-  function st(n){return C.step.replace('{n}',n);}
-  function show(o){ch.hidden=true;step.hidden=true;q.hidden=true;res.hidden=false;v.textContent=o[0];ex.textContent=o[1];}
-  ch.addEventListener('click',function(e){
-    var b=e.target.closest('.choice'); if(!b) return;
-    if(b.dataset.pick==='later'){ show(C.out[r]); return; }
-    r++; if(r>=later.length){ show(C.out[3]); return; }
-    amt.textContent=fmt(later[r]); step.textContent=st(r+1);
-  });
-  document.getElementById('again').addEventListener('click',function(){
-    r=0; amt.textContent=fmt(later[0]); step.textContent=st(1);
-    ch.hidden=false; step.hidden=false; q.hidden=false; res.hidden=true;
+  $('again').addEventListener('click',function(){
+    ans=new Array(N).fill(null); done=false; k=0;
+    document.querySelector('#game .choices').hidden=false; $('q').hidden=false; $('step').hidden=false; $('result').hidden=true;
+    render();
   });
 })();
 """
@@ -260,9 +297,10 @@ def home(lang):
         else:
             link = f'<p><a href="{href(lang, "research")}">{E(lbl)}</a></p>'
         offer.append(f"<div><h3>{E(h)}</h3><p>{E(p)}</p>{link}</div>")
-    cfg = json.dumps({"pairs": t["pairs"], "tcount": t["tcount"], "tpillar": t["tpillar"].replace("{p:02d}", "{p}"), "amounts": t["amounts"], "locale": t["locale"],
-                      "step": t["step"], "out": t["out"]}, ensure_ascii=False)
-    a = t["amounts"]
+    cfg = json.dumps({"pairs": t["pairs"], "tcount": t["tcount"], "tpillar": t["tpillar"].replace("{p:02d}", "{p}"),
+                      "quiz": t["quiz"], "step": t["step"], "out": t["out"], "score": t["result_score"],
+                      "names": [p[0] for p in t["pillars"]], "money": t["money_note"]}, ensure_ascii=False)
+    q0 = t["quiz"][0]
     body = f'''
 <section class="hero">
   <div class="hero-text">
@@ -295,16 +333,20 @@ def home(lang):
     <p>{E(t["voices_p2"])}</p>
   </div>
   <div class="game" id="game">
-    <p class="q" id="q">{E(t["q"])}</p>
+    <p class="q" id="q">{E(q0[0])}</p>
     <div class="choices">
-      <button type="button" class="choice" data-pick="now"><span>{E(t["now"])}</span><strong>{money(a[0], t["locale"])}</strong></button>
-      <button type="button" class="choice" data-pick="later"><span>{E(t["later"])}</span><strong id="later-amt">{money(a[1], t["locale"])}</strong></button>
+      <button type="button" class="choice" id="opt0" data-side="devil"><span>{E(q0[1][0])}</span><strong>{E(q0[1][1])}</strong></button>
+      <button type="button" class="choice" id="opt1" data-side="angel"><span>{E(q0[2][0])}</span><strong>{E(q0[2][1])}</strong></button>
     </div>
-    <p class="step" id="step">{E(t["step"].replace("{n}", "1"))}</p>
+    <p class="step" id="step">{E(t["step"].replace("{n}", "1"))} · {E(t["tpillar"].format(p=1))}</p>
     <div class="result" id="result" hidden>
       <p class="verdict" id="verdict"></p>
+      <p id="score"></p>
       <p id="explain"></p>
-      <p><a href="#p2">{E(t["read_p2"])}</a> · <button type="button" class="link" id="again">{E(t["again"])}</button></p>
+      <p id="lost-h" class="lost-h">{E(t["lost_h"])}</p>
+      <ul id="lost" class="lost"></ul>
+      <p id="money" class="money" hidden>{E(t["money_note"])}</p>
+      <p><button type="button" class="link" id="again">{E(t["again"])}</button></p>
     </div>
   </div>
 </section>

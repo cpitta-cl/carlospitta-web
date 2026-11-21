@@ -142,9 +142,8 @@ footer p{margin:0 0 .3rem}
 .choice{display:flex;flex-direction:column;gap:.35rem;align-items:flex-start;padding:1rem 1.1rem;cursor:pointer;
   background:var(--paper);border:2px solid var(--rule);border-radius:12px;font-family:var(--display);color:var(--ink);text-align:left}
 .choice span{font-size:.9rem;color:var(--muted)}
-.choice strong{font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.choice strong{font-size:clamp(1.15rem,2vw,1.45rem);line-height:1.2;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .choice:hover{border-color:var(--accent)}
-.choice[data-pick=later] strong{color:var(--accent)}
 .step{margin:.9rem 0 0;font:.85rem var(--display);color:var(--muted)}
 .result .verdict{font:800 1.6rem/1.1 var(--display);color:var(--ink);margin:0 0 .6rem;letter-spacing:-.02em}
 .result p{margin:0 0 .8rem}
@@ -167,3 +166,9 @@ footer p{margin:0 0 .3rem}
   .choices{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+.result #score{font:700 1rem var(--display);color:var(--accent);margin:0 0 .5rem}
+.lost-h{font:700 .9rem var(--display);color:var(--ink);margin:.8rem 0 .3rem!important}
+.lost{margin:0 0 .8rem;padding-left:1.1rem}
+.lost a{font:600 .95rem var(--display)}
+.money{font-size:.95rem;color:var(--muted)}

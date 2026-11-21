@@ -114,7 +114,9 @@ footer p{margin:0 0 .3rem}
   border-right:2px solid var(--ink);border-bottom:2px solid var(--ink)}
 .b-angel::after{left:36%;transform:rotate(45deg)}
 .b-devil::after{right:34%;transform:rotate(45deg);border-color:var(--accent)}
-.next{display:block;margin:1rem auto 0;font:600 .9rem/1 var(--display);color:var(--ink);background:none;
+.tnav{text-align:center;margin:1rem 0 0;font:.85rem var(--display);color:var(--muted)}
+.tnav a{color:var(--muted)}
+.next{display:inline-block;margin:0 .6rem 0 0;font:600 .9rem/1 var(--display);color:var(--ink);background:none;
   border:0;border-bottom:2px solid var(--accent);padding:.3rem 0;cursor:pointer}
 .next:hover{color:var(--accent)}
 

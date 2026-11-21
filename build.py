@@ -27,10 +27,17 @@ T = {
  "cta1": "Conoce los diez pilares", "cta2": "¿Quién gana en ti?",
  "stage_label": "Un angelito y un diablito discuten en tus hombros",
  "angel": "Angelito", "devil": "Diablito", "next": "Otra tentación",
- "pairs": [["Cómpralo ahora. A crédito, total…", "Espera un mes. Si todavía lo quieres, cómpralo."],
-           ["Mañana empiezas. Hoy, otro capítulo.", "Cinco minutos hoy valen más que una hora el lunes."],
-           ["Mira lo que tiene tu vecino.", "Mira todo lo que ya tienes tú."],
-           ["Respóndele ahora, con todo.", "Respira tres veces antes de contestar."]],
+ "pairs": [["Un capítulo más y te vas a dormir.", "Mañana te vas a agradecer haber dormido.", 1],
+           ["Cómpralo ahora. A crédito, total…", "Espera un mes. Si todavía lo quieres, cómpralo.", 2],
+           ["Mañana empiezas. Hoy no hay ganas.", "Cinco minutos hoy valen más que una hora el lunes.", 3],
+           ["Mira lo que tiene tu vecino.", "Mira todo lo que ya tienes tú.", 4],
+           ["No le escribas tú primero.", "Escríbele. Nadie pierde por querer.", 5],
+           ["Revisa las noticias otra vez.", "Lo que no depende de ti puede esperar.", 6],
+           ["Respóndele ahora, con todo.", "Respira tres veces antes de contestar.", 7],
+           ["Quédate donde estás: cambiar da miedo.", "Pregúntate si lo que haces le sirve a alguien.", 8],
+           ["Revisa el celular, solo un segundo.", "Primero respira. El celular puede esperar.", 9],
+           ["No tienes tiempo para quedarte en silencio.", "Cinco minutos de silencio también son tiempo.", 10]],
+ "tcount": "Tentación {i} de {n}", "tpillar": "Pilar {p:02d}",
  "big_unit": "millones",
  "why_lede": "de personas viven con depresión, la primera causa de mala salud y discapacidad en el mundo. Y casi la mitad no recibe tratamiento, incluso en los países ricos.",
  "why_src": "Organización Mundial de la Salud, 2017.",
@@ -91,10 +98,17 @@ T = {
  "cta1": "Meet the ten pillars", "cta2": "Who wins in you?",
  "stage_label": "A little angel and a little devil argue on your shoulders",
  "angel": "Angel", "devil": "Devil", "next": "Another temptation",
- "pairs": [["Buy it now. Put it on credit…", "Wait a month. If you still want it, buy it."],
-           ["Start tomorrow. One more episode tonight.", "Five minutes today beat an hour on Monday."],
-           ["Look at what your neighbor has.", "Look at everything you already have."],
-           ["Reply right now. Let them have it.", "Take three breaths before you answer."]],
+ "pairs": [["One more episode, then bed.", "Tomorrow-you will thank you for sleeping.", 1],
+           ["Buy it now. Put it on credit…", "Wait a month. If you still want it, buy it.", 2],
+           ["Start tomorrow. You are not in the mood today.", "Five minutes today beat an hour on Monday.", 3],
+           ["Look at what your neighbor has.", "Look at everything you already have.", 4],
+           ["Don't text them first.", "Text them. Nobody loses by caring.", 5],
+           ["Check the news again.", "What isn't up to you can wait.", 6],
+           ["Reply right now. Let them have it.", "Take three breaths before you answer.", 7],
+           ["Stay put: change is scary.", "Ask yourself whether what you do helps someone.", 8],
+           ["Check your phone, just for a second.", "Breathe first. The phone can wait.", 9],
+           ["You don't have time to sit in silence.", "Five minutes of silence is time too.", 10]],
+ "tcount": "Temptation {i} of {n}", "tpillar": "Pillar {p:02d}",
  "big_unit": "million",
  "why_lede": "people live with depression, the leading cause of ill health and disability worldwide. Nearly half receive no treatment, even in rich countries.",
  "why_src": "World Health Organization, 2017.",
@@ -199,6 +213,9 @@ SCRIPT = r"""
   var d=document.getElementById('say-devil'), a=document.getElementById('say-angel');
   document.getElementById('next-temptation').addEventListener('click',function(){
     k=(k+1)%C.pairs.length; d.textContent=C.pairs[k][0]; a.textContent=C.pairs[k][1];
+    var p=C.pairs[k][2];
+    document.getElementById('t-count').textContent=C.tcount.replace('{i}',k+1).replace('{n}',C.pairs.length);
+    var pl=document.getElementById('t-pillar'); pl.href='#p'+p; pl.textContent=C.tpillar.replace('{p}',(p<10?'0':'')+p);
   });
   var later=C.amounts.slice(1), r=0;
   var amt=document.getElementById('later-amt'), step=document.getElementById('step'),
@@ -243,7 +260,7 @@ def home(lang):
         else:
             link = f'<p><a href="{href(lang, "research")}">{E(lbl)}</a></p>'
         offer.append(f"<div><h3>{E(h)}</h3><p>{E(p)}</p>{link}</div>")
-    cfg = json.dumps({"pairs": t["pairs"], "amounts": t["amounts"], "locale": t["locale"],
+    cfg = json.dumps({"pairs": t["pairs"], "tcount": t["tcount"], "tpillar": t["tpillar"].replace("{p:02d}", "{p}"), "amounts": t["amounts"], "locale": t["locale"],
                       "step": t["step"], "out": t["out"]}, ensure_ascii=False)
     a = t["amounts"]
     body = f'''
@@ -257,7 +274,8 @@ def home(lang):
     {hero_scene()}
     <p class="bubble b-angel" aria-live="polite"><span class="who">{E(t["angel"])}</span><span class="say" id="say-angel">{E(t["pairs"][0][1])}</span></p>
     <p class="bubble b-devil" aria-live="polite"><span class="who">{E(t["devil"])}</span><span class="say" id="say-devil">{E(t["pairs"][0][0])}</span></p>
-    <button class="next" type="button" id="next-temptation">{E(t["next"])}</button>
+    <p class="tnav"><button class="next" type="button" id="next-temptation">{E(t["next"])}</button>
+      <span class="tcount" id="t-count">{E(t["tcount"].format(i=1, n=len(t["pairs"])))}</span> · <a id="t-pillar" href="#p{t["pairs"][0][2]}">{E(t["tpillar"].format(p=t["pairs"][0][2]))}</a></p>
   </figure>
 </section>
 

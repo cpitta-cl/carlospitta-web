@@ -56,9 +56,10 @@
     <path d="M306 222 C309 225 313 225 316 222 L318 219" stroke="#fff" stroke-width="2"/>
   </g>
 </svg>
-    <p class="bubble b-angel" aria-live="polite"><span class="who">Angel</span><span class="say" id="say-angel">Wait a month. If you still want it, buy it.</span></p>
-    <p class="bubble b-devil" aria-live="polite"><span class="who">Devil</span><span class="say" id="say-devil">Buy it now. Put it on credit…</span></p>
-    <button class="next" type="button" id="next-temptation">Another temptation</button>
+    <p class="bubble b-angel" aria-live="polite"><span class="who">Angel</span><span class="say" id="say-angel">Tomorrow-you will thank you for sleeping.</span></p>
+    <p class="bubble b-devil" aria-live="polite"><span class="who">Devil</span><span class="say" id="say-devil">One more episode, then bed.</span></p>
+    <p class="tnav"><button class="next" type="button" id="next-temptation">Another temptation</button>
+      <span class="tcount" id="t-count">Temptation 1 of 10</span> · <a id="t-pillar" href="#p1">Pillar 01</a></p>
   </figure>
 </section>
 
@@ -136,10 +137,13 @@
 </section>
 <script>
 (function(){
-  var C={"pairs": [["Buy it now. Put it on credit…", "Wait a month. If you still want it, buy it."], ["Start tomorrow. One more episode tonight.", "Five minutes today beat an hour on Monday."], ["Look at what your neighbor has.", "Look at everything you already have."], ["Reply right now. Let them have it.", "Take three breaths before you answer."]], "amounts": [100, 110, 125, 150], "locale": "en-US", "step": "Question {n} of 3", "out": [["The angel wins.", "You waited for 10% more. Your impatience is below 10% a month. Careful: 10% a month is already more than 200% a year."], ["A close call.", "You waited for 25% more, but not for 10%. Your impatience is between 10% and 25% a month: roughly 200% to 1,300% a year."], ["The devil wins, barely.", "You only waited for 50% more. Your impatience is between 25% and 50% a month: over 1,300% a year."], ["The devil wins.", "Not even 50% more made you wait. Your impatience is above 50% a month. Whoever lends you money to buy today knows exactly what your hurry is worth."]]}, k=0;
+  var C={"pairs": [["One more episode, then bed.", "Tomorrow-you will thank you for sleeping.", 1], ["Buy it now. Put it on credit…", "Wait a month. If you still want it, buy it.", 2], ["Start tomorrow. You are not in the mood today.", "Five minutes today beat an hour on Monday.", 3], ["Look at what your neighbor has.", "Look at everything you already have.", 4], ["Don't text them first.", "Text them. Nobody loses by caring.", 5], ["Check the news again.", "What isn't up to you can wait.", 6], ["Reply right now. Let them have it.", "Take three breaths before you answer.", 7], ["Stay put: change is scary.", "Ask yourself whether what you do helps someone.", 8], ["Check your phone, just for a second.", "Breathe first. The phone can wait.", 9], ["You don't have time to sit in silence.", "Five minutes of silence is time too.", 10]], "tcount": "Temptation {i} of {n}", "tpillar": "Pillar {p}", "amounts": [100, 110, 125, 150], "locale": "en-US", "step": "Question {n} of 3", "out": [["The angel wins.", "You waited for 10% more. Your impatience is below 10% a month. Careful: 10% a month is already more than 200% a year."], ["A close call.", "You waited for 25% more, but not for 10%. Your impatience is between 10% and 25% a month: roughly 200% to 1,300% a year."], ["The devil wins, barely.", "You only waited for 50% more. Your impatience is between 25% and 50% a month: over 1,300% a year."], ["The devil wins.", "Not even 50% more made you wait. Your impatience is above 50% a month. Whoever lends you money to buy today knows exactly what your hurry is worth."]]}, k=0;
   var d=document.getElementById('say-devil'), a=document.getElementById('say-angel');
   document.getElementById('next-temptation').addEventListener('click',function(){
     k=(k+1)%C.pairs.length; d.textContent=C.pairs[k][0]; a.textContent=C.pairs[k][1];
+    var p=C.pairs[k][2];
+    document.getElementById('t-count').textContent=C.tcount.replace('{i}',k+1).replace('{n}',C.pairs.length);
+    var pl=document.getElementById('t-pillar'); pl.href='#p'+p; pl.textContent=C.tpillar.replace('{p}',(p<10?'0':'')+p);
   });
   var later=C.amounts.slice(1), r=0;
   var amt=document.getElementById('later-amt'), step=document.getElementById('step'),

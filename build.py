@@ -4,7 +4,7 @@ Uso: python3 build.py  ->  escribe HTML en ./site/  (los recursos estáticos ya 
 URLs limpias (sin .html): Cloudflare Pages las resuelve solo.
 """
 import pathlib, html, json
-from content import T, COURSES, OTHER_UNIS, NEWS, AGENDA, PUBS, EMAIL
+from content import T, COURSES, OTHER_UNIS, NEWS, AGENDA, PUBS, EMAIL, PROFILES
 from art import PILLAR_ICONS, LINE_ICONS, hero_scene, mini
 
 OUT = pathlib.Path(__file__).parent / "site"
@@ -28,6 +28,16 @@ def url_to_file(u):
 
 DOC_ICON = ('<svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round">'
             '<path d="M8 3 H19 L25 9 V29 H8Z" fill="#fff"/><path d="M19 3 V9 H25"/><path d="M12 17 H21 M12 21 H21 M12 25 H17" stroke="var(--accent)"/></svg>')
+
+ICONS = {
+ "ORCID": '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#A6CE39"/><path d="M10.5 12.3h2.2v10.2h-2.2zM11.6 8.5a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8zM15 12.3h5.6c3.4 0 5.2 2.4 5.2 5.1 0 2.9-2.1 5.1-5.3 5.1H15zm2.2 2v6.2h3.2c2.3 0 3.2-1.6 3.2-3.1 0-1.6-1-3.1-3.2-3.1z" fill="#fff"/></svg>',
+ "ResearchGate": '<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#00CCBB"/><text x="16" y="21.5" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#fff">R<tspan font-size="9" dy="-5">G</tspan></text></svg>',
+}
+
+def profile_chips(cls="profiles"):
+    return f'<ul class="{cls}">' + "".join(
+        f'<li><a href="{u}" rel="me noopener" target="_blank">{ICONS[n]}<span><b>{n}</b><small>{E(h)}</small></span></a></li>'
+        for n, u, h in PROFILES) + "</ul>"
 
 def fmt_date(lang, d):
     t = T[lang]
@@ -56,6 +66,7 @@ def shell(lang, key, title, body, alt_url, cfg=None, desc=None):
 <title>{E(title)}</title>
 <meta name="description" content="{E(desc or t["desc"])}">
 <link rel="canonical" href="{BASE}{here}">
+<link rel="me" href="{PROFILES[0][1]}">
 <link rel="alternate" hreflang="{lang}" href="{BASE}{here}">
 <link rel="alternate" hreflang="{other}" href="{BASE}{alt_url[other]}">
 <meta property="og:title" content="{E(title)}">
@@ -90,6 +101,7 @@ def shell(lang, key, title, body, alt_url, cfg=None, desc=None):
   <div>
    <p class="say">{E(t["footer_cta"])}</p>
    <p><a class="mail" href="mailto:{EMAIL}">{EMAIL}</a></p>
+   {profile_chips("profiles foot-prof")}
   </div>
   <nav aria-label="{E(t["nav_label"])}"><ul>{foot_nav}</ul></nav>
  </div>
@@ -260,7 +272,8 @@ def research(lang):
         f"<li>{p.format(thesis=E(t['thesis']), **{'and': E(t['and'])})}</li>" for p in PUBS) + "</ol>"
     body = page_hero(t["research_t"], t["research_i"]) + f'''
 <section class="page-body"><div class="wrap">
-  <h2 style="margin-top:0">{E(t["lines_h"])}</h2>
+  {profile_chips()}
+  <h2>{E(t["lines_h"])}</h2>
   {lines}
   <h2>{E(t["agenda_h"])}</h2>
   <p>{E(t["agenda_p"])}</p>
@@ -369,7 +382,8 @@ def about(lang):
     bio = "".join(f"<p>{E(p)}</p>" for p in t["bio"])
     body = page_hero(t["about_t"], t["about_i"]) + f'''
 <section class="page-body"><div class="wrap about-in">
-  <div>{bio}<p>{E(t["write_me"])}<a href="mailto:{EMAIL}">{EMAIL}</a>.</p></div>
+  <div>{bio}<p>{E(t["write_me"])}<a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
+    <h2>{E(t["profiles_h"])}</h2>{profile_chips()}</div>
   <figure><img src="/img/mx-lab-3.webp" alt="" width="1400" height="1050"><figcaption>{E(t["about_photo"])}</figcaption></figure>
 </div></section>'''
     return shell(lang, "about", f'{t["about_t"]} — Carlos R. Pitta', body, URL["about"])

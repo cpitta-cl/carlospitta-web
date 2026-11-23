@@ -2,6 +2,10 @@
 
 EMAIL = "cpitta@yahoo.com"
 
+# Perfiles académicos (aparecen en Investigación, Sobre mí y el pie de página)
+PROFILES = [("ORCID", "https://orcid.org/0009-0004-6189-2660", "0009-0004-6189-2660"),
+            ("ResearchGate", "https://www.researchgate.net/profile/Carlos-Pitta", "Carlos-Pitta")]
+
 # ---------------------------------------------------------------- cursos UACh
 # Cada curso: código, archivos disponibles en site/docs/, y textos por idioma.
 COURSES = [
@@ -99,13 +103,13 @@ OTHER_UNIS = [
  {"years": "2002–2003",
   "es": ("Universidad de Xalapa", "Xalapa, México", [("Globalización de la economía (Administración de Empresas)", "ux-globalizacion"), ("Matemáticas financieras (Maestría en Finanzas)", "ux-matfinancieras"), ("Econometría", None)]),
   "en": ("Universidad de Xalapa", "Xalapa, Mexico", [("Economic globalization (Business Administration)", "ux-globalizacion"), ("Financial mathematics (MS in Finance)", "ux-matfinancieras"), ("Econometrics", None)])},
- {"years": "2003",
+ {"years": "2003–2010",
   "es": ("Universidad Cristóbal Colón", "Veracruz, México", [("Economía internacional (Especialización en Economía Financiera)", "colon-econinternacional"), ("Finanzas internacionales (Maestría en Finanzas)", "colon-finanzasint")]),
   "en": ("Universidad Cristóbal Colón", "Veracruz, Mexico", [("International economics (Specialization in Financial Economics)", "colon-econinternacional"), ("International finance (MS in Finance)", "colon-finanzasint")])},
- {"years": "2006–2016",
+ {"years": "2006–2017",
   "es": ("University of Florida", "Gainesville, EE. UU.", [("AEB 2014: Economic Issues, Food and You", "uf-aeb2014"), ("ECO 3101: Intermediate Microeconomics", "uf-eco3101")]),
   "en": ("University of Florida", "Gainesville, USA", [("AEB 2014: Economic Issues, Food and You", "uf-aeb2014"), ("ECO 3101: Intermediate Microeconomics", "uf-eco3101")])},
- {"years": "2008–2009",
+ {"years": "2008",
   "es": ("Universidad de Concepción", "Concepción, Chile", [("Microeconomía", "udec-micro"), ("Gestión financiera internacional (Magíster en Gestión Industrial)", "udec-gfi"), ("Macroeconomía", None)]),
   "en": ("Universidad de Concepción", "Concepción, Chile", [("Microeconomics", "udec-micro"), ("International financial management (MS in Industrial Management)", "udec-gfi"), ("Macroeconomics", None)])},
  {"years": "2008–2013",
@@ -114,7 +118,7 @@ OTHER_UNIS = [
  {"years": "2010",
   "es": ("Universidad Diego Portales", "Santiago, Chile", [("Fundamentos de economía", "udp-principios"), ("Estadística I", "udp-estadistica"), ("Microeconomía II", None)]),
   "en": ("Universidad Diego Portales", "Santiago, Chile", [("Principles of economics", "udp-principios"), ("Statistics I", "udp-estadistica"), ("Microeconomics II", None)])},
- {"years": "2011",
+ {"years": "2010–2011",
   "es": ("Pontificia Universidad Católica del Perú, CENTRUM", "Lima, Perú", [("Negocios internacionales y e-business (MBA)", "pucp-nieb")]),
   "en": ("Pontificia Universidad Católica del Perú, CENTRUM", "Lima, Peru", [("International business and e-business (MBA)", "pucp-nieb")])},
 ]
@@ -276,8 +280,9 @@ T = {
  "about_t": "Sobre mí", "about_i": "Economista del comportamiento, profesor y divulgador.",
  "bio": ["Soy economista mexicano y vivo en el sur de Chile. Estudié Economía en la Universidad Veracruzana, Macroeconomía Aplicada en la Pontificia Universidad Católica de Chile, y la maestría y el doctorado en la Universidad de Florida.",
          "Desde 2011 soy académico del Instituto de Gestión e Industria de la Universidad Austral de Chile, en Puerto Montt. Antes enseñé en la Universidad Diego Portales, la Universidad de Concepción y la Universidad de Florida, y he sido profesor visitante en programas de MBA en Perú, Paraguay y México.",
+         "Desde 2014 integro, como experto del área de Economía, el Comité de Adjudicación Regional de Los Lagos de la Defensoría Penal Pública (Ministerio de Justicia, Res. Exenta N.º 158/2014).",
          "Me interesan la docencia, la investigación y la extensión, en ese orden. 1% happier es mi forma de juntar las tres."],
- "about_photo": "En el laboratorio, México, 2019.",
+ "about_photo": "En el laboratorio, México, 2019.", "profiles_h": "Perfiles académicos", "service_h": "Servicio público",
  "write_me": "Escríbeme a ",
 },
 "en": {
@@ -383,8 +388,9 @@ T = {
  "about_t": "About", "about_i": "Behavioral economist, teacher and science communicator.",
  "bio": ["I am a Mexican economist living in southern Chile. I studied economics at Universidad Veracruzana and applied macroeconomics at Pontificia Universidad Católica de Chile, and earned my MS and PhD at the University of Florida.",
          "Since 2011 I have been on the faculty of the Instituto de Gestión e Industria at Universidad Austral de Chile in Puerto Montt. Before that I taught at Universidad Diego Portales, Universidad de Concepción and the University of Florida, and I have been a visiting professor in MBA programs in Peru, Paraguay and Mexico.",
+         "Since 2014 I have served as the economics expert on the Los Lagos Regional Award Committee of Chile's Public Criminal Defender's Office (Defensoría Penal Pública, Ministry of Justice, Exempt Resolution No. 158/2014).",
          "I care about teaching, research and outreach, in that order. 1% happier is my way of bringing the three together."],
- "about_photo": "In the lab, Mexico, 2019.",
+ "about_photo": "In the lab, Mexico, 2019.", "profiles_h": "Academic profiles", "service_h": "Public service",
  "write_me": "Write to me at ",
 },
 }

@@ -341,3 +341,16 @@ section{scroll-margin-top:80px}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .js .hero h1 .one,.js .hero h1 .word,.js .hero .lede,.js .hero .cta,.js .scene .angel,.js .scene .devil{opacity:1;transform:none}
 }
+
+/* perfiles académicos */
+.profiles{list-style:none;margin:0 0 1rem;padding:0;display:flex;flex-wrap:wrap;gap:.7rem}
+.profiles a{display:flex;align-items:center;gap:.6rem;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:.55rem .9rem .55rem .6rem;transition:transform .3s var(--spring),border-color .2s}
+.profiles a:hover{transform:translateY(-3px);border-color:var(--ink);color:var(--ink)}
+.profiles svg{width:30px;height:30px;flex:none}
+.profiles span{display:flex;flex-direction:column;line-height:1.15}
+.profiles b{font:700 .98rem var(--display)}
+.profiles small{font:500 .8rem var(--display);color:var(--ink-soft)}
+.foot-prof{margin-top:1.2rem}
+.foot-prof a{background:transparent;border-color:#3A3680}
+.foot-prof a:hover{border-color:#fff;color:#fff}
+.foot-prof small{color:#B9B8DD}

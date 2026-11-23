@@ -30,13 +30,16 @@ DOC_ICON = ('<svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="var
             '<path d="M8 3 H19 L25 9 V29 H8Z" fill="#fff"/><path d="M19 3 V9 H25"/><path d="M12 17 H21 M12 21 H21 M12 25 H17" stroke="var(--accent)"/></svg>')
 
 ICONS = {
- "ORCID": '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#A6CE39"/><path d="M10.5 12.3h2.2v10.2h-2.2zM11.6 8.5a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8zM15 12.3h5.6c3.4 0 5.2 2.4 5.2 5.1 0 2.9-2.1 5.1-5.3 5.1H15zm2.2 2v6.2h3.2c2.3 0 3.2-1.6 3.2-3.1 0-1.6-1-3.1-3.2-3.1z" fill="#fff"/></svg>',
- "ResearchGate": '<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#00CCBB"/><text x="16" y="21.5" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#fff">R<tspan font-size="9" dy="-5">G</tspan></text></svg>',
+ "ORCID": '<svg viewBox="0 0 32 32" width="14" height="14" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#A6CE39"/><path d="M10.5 12.3h2.2v10.2h-2.2zM11.6 8.5a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8zM15 12.3h5.6c3.4 0 5.2 2.4 5.2 5.1 0 2.9-2.1 5.1-5.3 5.1H15zm2.2 2v6.2h3.2c2.3 0 3.2-1.6 3.2-3.1 0-1.6-1-3.1-3.2-3.1z" fill="#fff"/></svg>',
+ "ResearchGate": '<svg viewBox="0 0 32 32" width="14" height="14" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#00CCBB"/><text x="16" y="21.5" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#fff">R<tspan font-size="9" dy="-5">G</tspan></text></svg>',
 }
+
+import hashlib, pathlib
+ASSET_V = {f: hashlib.md5(pathlib.Path("site", f).read_bytes()).hexdigest()[:8] for f in ("style.css", "app.js")}
 
 def profile_chips(cls="profiles"):
     return f'<ul class="{cls}">' + "".join(
-        f'<li><a href="{u}" rel="me noopener" target="_blank">{ICONS[n]}{n}</a></li>'
+        f'<li style="list-style:none"><a href="{u}" rel="me noopener" target="_blank">{ICONS[n]}{n}</a></li>'
         for n, u, h in PROFILES) + "</ul>"
 
 def fmt_date(lang, d):
@@ -77,10 +80,10 @@ def shell(lang, key, title, body, alt_url, cfg=None, desc=None):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400&family=Schibsted+Grotesk:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style.css?v={ASSET_V['style.css']}">
 <script>document.documentElement.classList.add('js')</script>
 {cfg_js}
-<script src="/app.js" defer></script>
+<script src="/app.js?v={ASSET_V['app.js']}" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">{E(t["skip"])}</a>

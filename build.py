@@ -36,7 +36,7 @@ ICONS = {
 
 def profile_chips(cls="profiles"):
     return f'<ul class="{cls}">' + "".join(
-        f'<li><a href="{u}" rel="me noopener" target="_blank">{ICONS[n]}<span><b>{n}</b><small>{E(h)}</small></span></a></li>'
+        f'<li><a href="{u}" rel="me noopener" target="_blank">{ICONS[n]}{n}</a></li>'
         for n, u, h in PROFILES) + "</ul>"
 
 def fmt_date(lang, d):
@@ -101,7 +101,6 @@ def shell(lang, key, title, body, alt_url, cfg=None, desc=None):
   <div>
    <p class="say">{E(t["footer_cta"])}</p>
    <p><a class="mail" href="mailto:{EMAIL}">{EMAIL}</a></p>
-   {profile_chips("profiles foot-prof")}
   </div>
   <nav aria-label="{E(t["nav_label"])}"><ul>{foot_nav}</ul></nav>
  </div>
@@ -272,8 +271,7 @@ def research(lang):
         f"<li>{p.format(thesis=E(t['thesis']), **{'and': E(t['and'])})}</li>" for p in PUBS) + "</ol>"
     body = page_hero(t["research_t"], t["research_i"]) + f'''
 <section class="page-body"><div class="wrap">
-  {profile_chips()}
-  <h2>{E(t["lines_h"])}</h2>
+  <h2 style="margin-top:0">{E(t["lines_h"])}</h2>
   {lines}
   <h2>{E(t["agenda_h"])}</h2>
   <p>{E(t["agenda_p"])}</p>
@@ -383,7 +381,7 @@ def about(lang):
     body = page_hero(t["about_t"], t["about_i"]) + f'''
 <section class="page-body"><div class="wrap about-in">
   <div>{bio}<p>{E(t["write_me"])}<a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
-    <h2>{E(t["profiles_h"])}</h2>{profile_chips()}</div>
+    {profile_chips()}</div>
   <figure><img src="/img/mx-lab-3.webp" alt="" width="1400" height="1050"><figcaption>{E(t["about_photo"])}</figcaption></figure>
 </div></section>'''
     return shell(lang, "about", f'{t["about_t"]} — Carlos R. Pitta', body, URL["about"])

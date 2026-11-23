@@ -6,7 +6,7 @@
   function ready(fn) { document.readyState !== 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn); }
 
   ready(function () {
-    requestAnimationFrame(function () { document.body.classList.add('ready'); });
+    document.body.classList.add('ready');
 
     /* ---- cabecera */
     var top = document.querySelector('.top');
@@ -57,7 +57,7 @@
       $('t-count').textContent = C.tcount.replace('{i}', k + 1).replace('{n}', N);
       var pl = $('t-pillar'); pl.href = '#p' + p[2]; pl.textContent = C.tpillar.replace('{p}', pad(p[2]));
       srD.textContent = p[0]; srA.textContent = p[1];
-      stage.dataset.turn = 'devil'; an.textContent = '';
+      stage.dataset.turn = 'devil'; an.textContent = '…';
       type(dv, p[0], function () {
         setTimeout(function () {
           stage.dataset.turn = 'angel';

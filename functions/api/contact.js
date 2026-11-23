@@ -35,9 +35,10 @@ export async function onRequestPost({ request, env }) {
       }),
     });
     mailed = r.ok;
+    if (!r.ok) console.log("resend", r.status, await r.text());
   }
   if (!stored && !mailed) return json({ error: "not_configured" }, 503);
-  return json({ ok: true });
+  return json({ ok: true, stored, mailed });
 }
 
 export const onRequest = () => json({ error: "method" }, 405);

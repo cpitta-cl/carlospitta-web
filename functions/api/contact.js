@@ -28,7 +28,7 @@ export async function onRequestPost({ request, env }) {
       method: "POST",
       headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        from: env.MAIL_FROM || "carlospitta.com <web@carlospitta.com>",
+        from: env.MAIL_FROM || "carlospitta.com <onboarding@resend.dev>",
         to: [env.MAIL_TO || TO], reply_to: msg.email,
         subject: `[carlospitta.com] ${msg.kind}: ${msg.name}`,
         text: `${msg.name} <${msg.email}>\n${msg.org}\n${msg.kind}\n\n${msg.message}\n\n— ${msg.at} ${msg.country}`,

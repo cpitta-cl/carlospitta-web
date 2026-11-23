@@ -1,9 +1,11 @@
 # carlospitta.com
 
-Sitio personal de Carlos R. Pitta, PhD: **1% happier**, investigación, docencia.
+Sitio personal de Carlos R. Pitta, generado con Python y publicado en Cloudflare Pages.
 
-- `site/` es lo que se publica (Cloudflare Pages, directorio de salida `site`, sin comando de compilación).
-- `build.py` genera las páginas de `site/` a partir del contenido; `art.py` contiene las ilustraciones SVG.
-- `site/style.css` es la hoja de estilos.
+- `content.py`: todos los textos (español e inglés), cursos, noticias y agenda de investigación.
+- `build.py`: genera el HTML en `site/` (`python3 build.py`).
+- `art.py`: ilustraciones SVG (angelito, diablito, íconos).
+- `site/`: lo que se publica (HTML generado, `style.css`, `app.js`, `img/`, `docs/`).
+- `functions/api/contact.js`: recibe el formulario de contacto. Necesita en Cloudflare un KV `CONTACTS` y/o el secreto `RESEND_API_KEY`; sin ellos el formulario ofrece el correo directo.
 
-Para regenerar: `python3 build.py`
+Cada push a `main` se publica en carlospitta.com; otras ramas generan una vista previa.
